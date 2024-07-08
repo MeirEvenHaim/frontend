@@ -98,7 +98,7 @@
                     bookDiv.classList.add('col-md-4', 'mb-4');
                     bookDiv.innerHTML = `
                         <div class="card">
-                            ${book.image ? `<img src="static/uploads/${book.image}" class="card-img-top" alt="${book.book_name}">` : ''}
+                            ${book.image ? `<img src="uploads/${book.image}" class="card-img-top" alt="${book.book_name}">` : ''}
                             <div class="card-body">
                                 <h5 class="card-title">${book.book_name}</h5>
                                 <p class="card-text"><strong>Author:</strong> ${book.author}</p>
