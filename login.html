@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="display.html">Display Books</a></li>
+                <li><a href="loan.html">Loan Book</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Login</h1>
+        <form id="loginForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Login</button>
+        </form>
+    </main>
+    <footer>
+        <p>Contact us at: library@example.com</p>
+    </footer>
+    <script>
+        const SERVER = "http://127.0.0.1:5000"    
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            try {
+                const response = await axios.post(SERVER+'/login', { username, password });
+                localStorage.setItem('token', response.data.access_token);
+                window.location.href = 'display.html';
+            } catch (error) {
+                alert('Login failed!');
+            }
+        });
+    </script>
+</body>
+</html>

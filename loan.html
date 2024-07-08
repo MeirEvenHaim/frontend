@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Book</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="display.html">Display Books</a></li>
+                <li><a href="#" onclick="logout()">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Loan a Book</h1>
+        <form id="loanForm">
+            <label for="book_id">Book:</label>
+            <select id="book_id" name="book_id" required>
+                <!-- Book options will be populated by JavaScript -->
+            </select>
+            <label for="user_id">User:</label>
+            <select id="user_id" name="user_id" required>
+                <!-- User options will be populated by JavaScript -->
+            </select>
+            <label for="return_date">Return Date:</label>
+            <input type="date" id="return_date" name="return_date" required>
+            <button type="submit">Loan Book</button>
+        </form>
+    </main>
+    <footer>
+        <p>Contact us at: library@example.com</p>
+    </footer>
+    <script>
+        const SERVER = "http://127.0.0.1:5000";
+
+        // Fetch books and users on page load
+        async function loadBooksAndUsers() {
+            try {
+                const token = localStorage.getItem('token');
+                if (!token) {
+                    alert('You must be logged in to loan books!');
+                    window.location.href = 'login.html';
+                    return;
+                }
+
+                // Fetch books
+                const booksResponse = await axios.get(`${SERVER}/books`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                populateSelectOptions('book_id', booksResponse.data, 'book_name', 'id');
+
+                // Fetch users
+                const usersResponse = await axios.get(`${SERVER}/register`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                populateSelectOptions('user_id', usersResponse.data, 'username', 'id');
+            } catch (error) {
+                console.error('Failed to fetch data:', error);
+                alert('Failed to fetch data. Please try again later.');
+            }
+        }
+
+        // Function to populate <select> element with options
+        function populateSelectOptions(selectId, data, textProp, valueProp) {
+            const selectElement = document.getElementById(selectId);
+            selectElement.innerHTML = ''; // Clear existing options
+            data.forEach(item => {
+                const option = document.createElement('option');
+                option.value = item[valueProp];
+                option.textContent = `${item[textProp]} (ID: ${item[valueProp]})`;
+                selectElement.appendChild(option);
+            });
+        }
+
+        // Handle loan form submission
+        document.getElementById('loanForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const book_id = document.getElementById('book_id').value;
+            const user_id = document.getElementById('user_id').value;
+            const return_date = document.getElementById('return_date').value;
+            try {
+                const token = localStorage.getItem('token');
+                if (!token) {
+                    alert('You must be logged in to loan books!');
+                    window.location.href = 'login.html';
+                    return;
+                }
+
+                // Handle OPTIONS request
+                await handleLoanOptions();
+
+                await axios.post(`${SERVER}/loans`, {
+                    book_id,
+                    register_id: user_id,
+                    return_date
+                }, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                alert('Book loaned successfully!');
+            } catch (error) {
+                console.error('Loan failed:', error);
+                alert('Loan failed. Please try again.');
+            }
+        });
+
+        // Function to handle OPTIONS request for CORS
+        async function handleLoanOptions() {
+            try {
+                const response = await axios.options(`${SERVER}/loans`, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    }
+                });
+                console.log('OPTIONS request handled successfully:', response);
+            } catch (error) {
+                console.error('Failed to handle OPTIONS request:', error);
+            }
+        }
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem('token');
+            window.location.href = 'login.html';
+        }
+
+        // Fetch books and users on page load
+        loadBooksAndUsers();
+    </script>
+</body>
+
+</html>
