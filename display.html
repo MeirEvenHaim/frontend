@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,9 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="#">Library App</a>
@@ -39,60 +36,45 @@
             </div>
         </nav>
     </header>
-
     <main class="container mt-5">
         <h1 class="mb-4">Books</h1>
-
         <div class="book-container">
-            <!-- Display existing books -->
-            <div id="booksContainer" class="row">
-                <!-- Books will be dynamically added here -->
-            </div>
-
-            <!-- Form to add a new book -->
+            <div id="booksContainer" class="row"></div>
             <form id="addBookForm" class="mt-5" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="book_name">Book Name:</label>
                     <input type="text" class="form-control" id="book_name" name="book_name" required>
                 </div>
-
                 <div class="form-group">
                     <label for="author">Author:</label>
                     <input type="text" class="form-control" id="author" name="author" required>
                 </div>
-
                 <div class="form-group">
                     <label for="date_of_publish">Date of Publish:</label>
                     <input type="date" class="form-control" id="date_of_publish" name="date_of_publish" required>
                 </div>
-
                 <div class="form-group">
                     <label for="summary">Summary:</label>
                     <textarea class="form-control" id="summary" name="summary" rows="4" required></textarea>
                 </div>
-
                 <div class="form-group">
                     <label for="image">Image:</label>
                     <input type="file" class="form-control-file" id="image" name="image">
                 </div>
-
                 <div class="form-group form-check">
                     <input type="checkbox" class="form-check-input" id="series" name="series">
                     <label class="form-check-label" for="series">Series</label>
                 </div>
-
                 <button type="submit" class="btn btn-primary">Add Book</button>
             </form>
         </div>
     </main>
-
     <footer class="bg-light text-center py-3 mt-5">
         <p>Contact us at: library@example.com</p>
     </footer>
-
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
-        const SERVER = "https://backend-deployer.onrender.com";
+        const SERVER = "http://127.0.0.1:5000"; // Adjust server URL if needed
 
         async function fetchBooks() {
             const token = localStorage.getItem('token');
@@ -116,7 +98,7 @@
                     bookDiv.classList.add('col-md-4', 'mb-4');
                     bookDiv.innerHTML = `
                         <div class="card">
-                            ${book.image ? `<img src="backend/media/${book.image}" class="card-img-top" alt="${book.book_name}">` : ''}
+                            ${book.image ? `<img src="static/uploads/${book.image}" class="card-img-top" alt="${book.book_name}">` : ''}
                             <div class="card-body">
                                 <h5 class="card-title">${book.book_name}</h5>
                                 <p class="card-text"><strong>Author:</strong> ${book.author}</p>
@@ -141,34 +123,25 @@
                 return;
             }
 
-            const form = document.getElementById('addBookForm');
-            const formData = new FormData(form);
+            const formData = new FormData(document.getElementById('addBookForm'));
 
             try {
-                await axios.post(SERVER + `/books`, formData, {
+                const response = await axios.post(SERVER + `/books`, formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
                         'Authorization': `Bearer ${token}`
                     }
                 });
-                form.reset(); // Clear the form after successful submission
-                fetchBooks(); // Refresh the book list
+                console.log(response.data);
+                fetchBooks(); // Refresh the books list after adding a new book
             } catch (error) {
+                console.error('Error adding book:', error.response ? error.response.data : error.message);
                 alert('Failed to add book!');
             }
         }
 
-        function logout() {
-            localStorage.removeItem('token');
-            window.location.href = 'login.html';
-        }
-
-        // Event listener for form submission
         document.getElementById('addBookForm').addEventListener('submit', addBook);
-
-        // Fetch books on page load
-        fetchBooks();
+        window.addEventListener('load', fetchBooks);
     </script>
 </body>
-
 </html>
