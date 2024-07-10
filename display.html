@@ -103,6 +103,7 @@
                                 <h5 class="card-title">${book.book_name}</h5>
                                 <p class="card-text"><strong>Author:</strong> ${book.author}</p>
                                 <p class="card-text">${book.summary}</p>
+                                <button class="btn btn-danger" onclick="deleteBook(${book.id})">Delete</button>
                             </div>
                         </div>
                     `;
@@ -137,6 +138,27 @@
             } catch (error) {
                 console.error('Error adding book:', error.response ? error.response.data : error.message);
                 alert('Failed to add book!');
+            }
+        }
+
+        async function deleteBook(bookId) {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                alert('You must be logged in to delete books!');
+                window.location.href = 'login.html';
+                return;
+            }
+
+            try {
+                await axios.delete(`${SERVER}/books/${bookId}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                fetchBooks(); // Refresh the books list after deleting a book
+            } catch (error) {
+                console.error('Error deleting book:', error.response ? error.response.data : error.message);
+                alert('Failed to delete book!');
             }
         }
 
