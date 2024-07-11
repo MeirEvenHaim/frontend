@@ -1,126 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <link rel="icon" type="image/jpg" href="glasses-1052010_640 (1).jpg" />
 
-<head>
-    <link rel="icon" type="image/jpg" href="glasses-1052010_640 (1).jpg">
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Display Books</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles.css">
-</head>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
 
-<body>
+  <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">Library App</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="loan.html">Borrow a Book</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="register.html">Register</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="display.html">Display Books</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="logout()">Logout</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Library App</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="loan.html">Borrow a Book</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="register.html">Register</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="display.html">Display Books</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" onclick="logout()">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
     </header>
     <main class="container mt-5">
-        <h1 class="mb-4">Books</h1>
-        <div class="book-container">
-            <div id="booksContainer" class="row"></div>
-            <form id="addBookForm" class="mt-5" enctype="multipart/form-data">
-                <div class="form-group">
-                    <label for="book-name">Book Name</label>
-                    <input type="text" class="form-control" id="book-name" name="book_name" required>
-                </div>
-                <div class="form-group">
-                    <label for="author">Author</label>
-                    <input type="text" class="form-control" id="author" name="author" required>
-                </div>
-                <div class="form-group">
-                    <label for="date-of-publish">Date of Publish</label>
-                    <input type="date" class="form-control" id="date-of-publish" name="date_of_publish" required>
-                </div>
-                <div class="form-group">
-                    <label for="summary">Summary</label>
-                    <textarea class="form-control" id="summary" name="summary"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="series">Series</label>
-                    <input type="checkbox" id="series" name="series">
-                </div>
-                <div class="form-group">
-                    <label for="image">Image</label>
-                    <input type="file" class="form-control" id="image" name="image">
-                </div>
-                <button type="submit" class="btn btn-primary">Add Book</button>
-            </form>
-        </div>
+      <h1 class="mb-4">Books</h1>
+      <div class="book-container">
+        <div id="booksContainer" class="row"></div>
+        <form id="addBookForm" class="mt-5" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="book-name">Book Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="book-name"
+              name="book_name"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="author">Author</label>
+            <input
+              type="text"
+              class="form-control"
+              id="author"
+              name="author"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="date-of-publish">Date of Publish</label>
+            <input
+              type="date"
+              class="form-control"
+              id="date-of-publish"
+              name="date_of_publish"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="summary">Summary</label>
+            <textarea
+              class="form-control"
+              id="summary"
+              name="summary"
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <label for="series">Series</label>
+            <input type="checkbox" id="series" name="series" />
+          </div>
+          <div class="form-group">
+            <label for="image">Image</label>
+            <input type="file" class="form-control" id="image" name="image" />
+          </div>
+          <button type="submit" class="btn btn-primary">Add Book</button>
+        </form>
+      </div>
     </main>
     <footer class="bg-light text-center py-3 mt-5">
-        <p>Contact us at: library@example.com</p>
+      <p>Contact us at: library@example.com</p>
     </footer>
 
     <!-- Update Book Modal -->
-    <div class="modal fade" id="updateBookModal" tabindex="-1" role="dialog" aria-labelledby="updateBookModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="updateBookModalLabel">Update Book</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="updateBookForm" enctype="multipart/form-data">
-                        <input type="hidden" id="update-book-id">
-                        <div class="form-group">
-                            <label for="update-book-name">Book Name</label>
-                            <input type="text" class="form-control" id="update-book-name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="update-author">Author</label>
-                            <input type="text" class="form-control" id="update-author" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="update-date-of-publish">Date of Publish</label>
-                            <input type="date" class="form-control" id="update-date-of-publish" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="update-summary">Summary</label>
-                            <textarea class="form-control" id="update-summary"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="update-series">Series</label>
-                            <input type="checkbox" id="update-series">
-                        </div>
-                        <div class="form-group">
-                            <label for="update-image">Image</label>
-                            <input type="file" class="form-control" id="update-image">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Update Book</button>
-                        <p id="update-book-error" class="text-danger"></p>
-                    </form>
-                </div>
-            </div>
+    <div
+      class="modal fade"
+      id="updateBookModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="updateBookModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="updateBookModalLabel">Update Book</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="updateBookForm" enctype="multipart/form-data">
+              <input type="hidden" id="update-book-id" />
+              <div class="form-group">
+                <label for="update-book-name">Book Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="update-book-name"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="update-author">Author</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="update-author"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="update-date-of-publish">Date of Publish</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="update-date-of-publish"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="update-summary">Summary</label>
+                <textarea class="form-control" id="update-summary"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="update-series">Series</label>
+                <input type="checkbox" id="update-series" />
+              </div>
+              <div class="form-group">
+                <label for="update-image">Image</label>
+                <input type="file" class="form-control" id="update-image" />
+              </div>
+              <button type="submit" class="btn btn-primary">Update Book</button>
+              <p id="update-book-error" class="text-danger"></p>
+            </form>
+          </div>
         </div>
+      </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -128,154 +185,204 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
-        const SERVER = "http://127.0.0.1:5000";
+      const SERVER = "http://127.0.0.1:5000";
+      window.static_folder = "{{url_for('static')}}";
 
-        async function fetchBooks() {
-            const token = localStorage.getItem('token');
-            if (!token) {
-                alert('You must be logged in to view books!');
-                window.location.href = 'login.html';
-                return;
-            }
+      async function fetchBooks() {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          alert("You must be logged in to view books!");
+          window.location.href = "login.html";
+          return;
+        }
 
-            try {
-                const response = await axios.get(`${SERVER}/books`, {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
-                const booksContainer = document.getElementById('booksContainer');
-                booksContainer.innerHTML = ''; // Clear existing content
+        try {
+          const response = await axios.get(`${SERVER}/books`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          const booksContainer = document.getElementById("booksContainer");
+          booksContainer.innerHTML = ""; // Clear existing content
 
-                response.data.forEach(book => {
-                    const bookDiv = document.createElement('div');
-                    bookDiv.classList.add('col-md-4', 'mb-4');
-                    bookDiv.innerHTML = `
+          response.data.forEach((book) => {
+            const bookDiv = document.createElement("div");
+            bookDiv.classList.add("col-md-4", "mb-4");
+            bookDiv.innerHTML = `
                         <div class="card">
-                            ${book.image ? `<img src="uploads/${book.image}" class="card-img-top" alt="${book.book_name}">` : ''}
+                            ${
+                              book.image
+                                ? `<img src="static/uploads/${book.image}" class="card-img-top" alt="${book.book_name}">`
+                                : ""
+                            }
                             <div class="card-body">
                                 <h5 class="card-title">${book.book_name}</h5>
-                                <p class="card-text"><strong>Author:</strong> ${book.author}</p>
+                                <p class="card-text"><strong>Author:</strong> ${
+                                  book.author
+                                }</p>
                                 <p class="card-text">${book.summary}</p>
-                                <button class="btn btn-primary" onclick="showUpdateBookForm(${book.id}, '${book.book_name}', '${book.author}', '${book.date_of_publish}', '${book.summary}', ${book.series})">Update</button>
-                                <button class="btn btn-danger" onclick="deleteBook(${book.id})">Delete</button>
+                                <button class="btn btn-primary" onclick="showUpdateBookForm(${
+                                  book.id
+                                }, '${book.book_name}', '${book.author}', '${
+              book.date_of_publish
+            }', '${book.summary}', ${book.series})">Update</button>
+                                <button class="btn btn-danger" onclick="deleteBook(${
+                                  book.id
+                                })">Delete</button>
                             </div>
                         </div>
                     `;
-                    booksContainer.appendChild(bookDiv);
-                });
-            } catch (error) {
-                console.error('Error fetching books:', error.response ? error.response.data : error.message);
-                alert('Failed to fetch books!');
-            }
+            booksContainer.appendChild(bookDiv);
+          });
+        } catch (error) {
+          console.error(
+            "Error fetching books:",
+            error.response ? error.response.data : error.message
+          );
+          alert("Failed to fetch books!");
+        }
+      }
+
+      async function addBook(event) {
+        event.preventDefault();
+        const token = localStorage.getItem("token");
+        if (!token) {
+          alert("You must be logged in to add books!");
+          window.location.href = "login.html";
+          return;
         }
 
-        async function addBook(event) {
-            event.preventDefault();
-            const token = localStorage.getItem('token');
-            if (!token) {
-                alert('You must be logged in to add books!');
-                window.location.href = 'login.html';
-                return;
-            }
+        const formData = new FormData(document.getElementById("addBookForm"));
 
-            const formData = new FormData(document.getElementById('addBookForm'));
+        try {
+          const response = await axios.post(`${SERVER}/books`, formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          console.log(response.data);
+          fetchBooks(); // Refresh the books list after adding a new book
+          document.getElementById("addBookForm").reset(); // Clear the form
+        } catch (error) {
+          console.error(
+            "Error adding book:",
+            error.response ? error.response.data : error.message
+          );
+          alert("Failed to add book!");
+        }
+      }
 
-            try {
-                const response = await axios.post(`${SERVER}/books`, formData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data',
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
-                console.log(response.data);
-                fetchBooks(); // Refresh the books list after adding a new book
-                document.getElementById('addBookForm').reset(); // Clear the form
-            } catch (error) {
-                console.error('Error adding book:', error.response ? error.response.data : error.message);
-                alert('Failed to add book!');
-            }
+      function showUpdateBookForm(
+        id,
+        book_name,
+        author,
+        date_of_publish,
+        summary,
+        series
+      ) {
+        document.getElementById("update-book-id").value = id;
+        document.getElementById("update-book-name").value = book_name;
+        document.getElementById("update-author").value = author;
+        document.getElementById("update-date-of-publish").value =
+          date_of_publish;
+        document.getElementById("update-summary").value = summary;
+        document.getElementById("update-series").checked = series;
+        $("#updateBookModal").modal("show");
+      }
+
+      async function updateBook(event) {
+        event.preventDefault();
+        const token = localStorage.getItem("token");
+        if (!token) {
+          alert("You must be logged in to update books!");
+          window.location.href = "login.html";
+          return;
         }
 
-        function showUpdateBookForm(id, book_name, author, date_of_publish, summary, series) {
-            document.getElementById('update-book-id').value = id;
-            document.getElementById('update-book-name').value = book_name;
-            document.getElementById('update-author').value = author;
-            document.getElementById('update-date-of-publish').value = date_of_publish;
-            document.getElementById('update-summary').value = summary;
-            document.getElementById('update-series').checked = series;
-            $('#updateBookModal').modal('show');
+        const id = document.getElementById("update-book-id").value;
+        const formData = new FormData();
+        formData.append(
+          "book_name",
+          document.getElementById("update-book-name").value
+        );
+        formData.append(
+          "author",
+          document.getElementById("update-author").value
+        );
+        formData.append(
+          "date_of_publish",
+          document.getElementById("update-date-of-publish").value
+        );
+        formData.append(
+          "summary",
+          document.getElementById("update-summary").value
+        );
+        formData.append(
+          "series",
+          document.getElementById("update-series").checked
+        );
+        const updateImage = document.getElementById("update-image").files[0];
+        if (updateImage) {
+          formData.append("image", updateImage);
         }
 
-        async function updateBook(event) {
-            event.preventDefault();
-            const token = localStorage.getItem('token');
-            if (!token) {
-                alert('You must be logged in to update books!');
-                window.location.href = 'login.html';
-                return;
-            }
+        try {
+          const response = await axios.put(`${SERVER}/books/${id}`, formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          console.log(response.data);
+          fetchBooks(); // Refresh the books list after updating a book
+          $("#updateBookModal").modal("hide"); // Hide the update modal
+        } catch (error) {
+          console.error(
+            "Error updating book:",
+            error.response ? error.response.data : error.message
+          );
+          document.getElementById("update-book-error").textContent =
+            "Failed to update book!";
+        }
+      }
 
-            const id = document.getElementById('update-book-id').value;
-            const formData = new FormData();
-            formData.append('book_name', document.getElementById('update-book-name').value);
-            formData.append('author', document.getElementById('update-author').value);
-            formData.append('date_of_publish', document.getElementById('update-date-of-publish').value);
-            formData.append('summary', document.getElementById('update-summary').value);
-            formData.append('series', document.getElementById('update-series').checked);
-            const updateImage = document.getElementById('update-image').files[0];
-            if (updateImage) {
-                formData.append('image', updateImage);
-            }
-
-            try {
-                const response = await axios.put(`${SERVER}/books/${id}`, formData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data',
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
-                console.log(response.data);
-                fetchBooks(); // Refresh the books list after updating a book
-                $('#updateBookModal').modal('hide'); // Hide the update modal
-            } catch (error) {
-                console.error('Error updating book:', error.response ? error.response.data : error.message);
-                document.getElementById('update-book-error').textContent = 'Failed to update book!';
-            }
+      async function deleteBook(id) {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          alert("You must be logged in to delete books!");
+          window.location.href = "login.html";
+          return;
         }
 
-        async function deleteBook(id) {
-            const token = localStorage.getItem('token');
-            if (!token) {
-                alert('You must be logged in to delete books!');
-                window.location.href = 'login.html';
-                return;
-            }
-
-            try {
-                const response = await axios.delete(`${SERVER}/books/${id}`, {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
-                console.log(response.data);
-                fetchBooks(); // Refresh the books list after deleting a book
-            } catch (error) {
-                console.error('Error deleting book:', error.response ? error.response.data : error.message);
-                alert('Failed to delete book!');
-            }
+        try {
+          console.log("HELLO", SERVER, id);
+          const response = await axios.delete(`${SERVER}/books/${id}`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          console.log(response.data);
+          //fetchBooks(); // Refresh the books list after deleting a book
+        } catch (error) {
+          //console.error('Error deleting book:', error.response ? error.response.data : error.message);
+          alert("Failed to delete book!");
         }
+      }
 
-        function logout() {
-            localStorage.removeItem('token');
-            window.location.href = 'login.html';
-        }
+      function logout() {
+        localStorage.removeItem("token");
+        window.location.href = "login.html";
+      }
 
-        document.getElementById('addBookForm').addEventListener('submit', addBook);
-        document.getElementById('updateBookForm').addEventListener('submit', updateBook);
+      document
+        .getElementById("addBookForm")
+        .addEventListener("submit", addBook);
+      document
+        .getElementById("updateBookForm")
+        .addEventListener("submit", updateBook);
 
-        fetchBooks();
+      fetchBooks();
     </script>
-</body>
-
+  </body>
 </html>
